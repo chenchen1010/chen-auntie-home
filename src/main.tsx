@@ -136,7 +136,7 @@ const localImages: Record<string, string> = {
   'living-room': '/assets/living-room.webp',
   'logo': '/assets/logo.webp'
 };
-const image = (seed: string) => localImages[seed];
+const image = (seed: string) => `${import.meta.env.BASE_URL}${localImages[seed].replace(/^\//, '')}`;
 
 function App() {
   const [lang, setLang] = React.useState<'zh' | 'en'>('zh');
