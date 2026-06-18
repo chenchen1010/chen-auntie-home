@@ -198,11 +198,12 @@ function App() {
         <div className="review-strip">
           {[lang === 'zh' ? '沟通很清楚，报价前会问房型和重点区域。' : 'Communication was clear before the quote.', lang === 'zh' ? '退租前约的清洁，厨房和浴室处理得很细。' : 'The move-out cleaning covered kitchen and bath details well.', lang === 'zh' ? '客服会跟进反馈，比临时找人安心。' : 'The follow-up made the service feel much more reliable.'].map((r) => <blockquote key={r}><Star weight="fill" /><p>“{r}”</p></blockquote>)}
         </div>
+        <div className="case-action"><a className="btn btn-contrast" href={XHS_URL}>{t.xhs}</a></div>
       </motion.section>
 
       <motion.section id="cities" className="cities section-pad" {...reveal}>
         <div className="city-intro"><City /><h2>{t.citiesTitle}</h2><p>{t.citiesBody}</p></div>
-        <div className="city-grid">{cityNames.map((city) => <a href="#contact" className="city-card" key={city}><MapPin />{city}<span>{t.cityAvailable}</span></a>)}</div>
+        <div className="city-grid">{cityNames.map((city) => <a href="#contact" className="city-card" key={city}><MapPin />{city}</a>)}</div>
       </motion.section>
 
       <motion.section id="about" className="about section-pad compact" {...reveal}>
@@ -216,8 +217,8 @@ function App() {
       </motion.section>
 
       <section id="contact" className="contact section-pad">
-        <div className="contact-card"><h2>{t.contactTitle}</h2><p>{t.contactBody}</p><div className="cta-row"><a className="btn" href={WECHAT_URL}><WechatLogo weight="fill" />{t.quote}</a><a className="btn btn-ghost" href={`tel:${PHONE}`}><Phone />{t.call}</a></div><div className="social-links"><a href={XHS_URL}>{t.xhs}</a></div></div>
-        <form className="quote-form" onSubmit={(e) => { e.preventDefault(); setSent(true); }}><h3>{t.formTitle}</h3>{t.fields.map((field, i) => i === 7 ? <label key={field}>{field}<textarea rows={4} /></label> : <label key={field}>{field}<input type="text" /></label>)}<p className="privacy-note">{lang === 'zh' ? '提交信息仅用于确认清洁服务报价、预约沟通和售后跟进。' : 'Submitted details are used only for quote confirmation, scheduling and service follow-up.'} <a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '查看隐私政策' : 'View Privacy Policy'}</a></p><button className="btn" type="submit">{t.submit}</button>{sent && <p className="form-note">{t.submitNote}</p>}</form>
+        <div className="contact-card"><h2>{t.contactTitle}</h2><p>{t.contactBody}</p><div className="cta-row"><a className="btn" href={WECHAT_URL}><WechatLogo weight="fill" />{t.quote}</a><a className="btn btn-ghost" href={`tel:${PHONE}`}><Phone />{t.call}</a></div></div>
+        <form className="quote-form" onSubmit={(e) => { e.preventDefault(); setSent(true); }}><h3>{t.formTitle}</h3>{t.fields.map((field, i) => i === 1 ? <label key={field}>{field}<select defaultValue=""><option value="" disabled>{lang === 'zh' ? '请选择所在城市' : 'Select your city'}</option>{cityNames.map((city) => <option key={city} value={city}>{city}</option>)}<option value="other">{lang === 'zh' ? '其他城市 / 先咨询' : 'Other city / Ask first'}</option></select></label> : i === 7 ? <label key={field}>{field}<textarea rows={4} /></label> : <label key={field}>{field}<input type="text" /></label>)}<p className="privacy-note">{lang === 'zh' ? '提交信息仅用于确认清洁服务报价、预约沟通和售后跟进。' : 'Submitted details are used only for quote confirmation, scheduling and service follow-up.'} <a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '查看隐私政策' : 'View Privacy Policy'}</a></p><button className="btn" type="submit">{t.submit}</button>{sent && <p className="form-note">{t.submitNote}</p>}</form>
       </section>
     </main>
 
