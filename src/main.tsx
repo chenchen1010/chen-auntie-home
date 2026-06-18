@@ -137,6 +137,7 @@ const localImages: Record<string, string> = {
   'logo': '/assets/logo.webp'
 };
 const image = (seed: string) => `${import.meta.env.BASE_URL}${localImages[seed].replace(/^\//, '')}`;
+const pagePath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 
 function App() {
   const [lang, setLang] = React.useState<'zh' | 'en'>('zh');
@@ -216,11 +217,11 @@ function App() {
 
       <section id="contact" className="contact section-pad">
         <div className="contact-card"><h2>{t.contactTitle}</h2><p>{t.contactBody}</p><div className="cta-row"><a className="btn" href={WECHAT_URL}><WechatLogo weight="fill" />{t.quote}</a><a className="btn btn-ghost" href={`tel:${PHONE}`}><Phone />{t.call}</a></div><div className="social-links"><a href={XHS_URL}>{t.xhs}</a></div></div>
-        <form className="quote-form" onSubmit={(e) => { e.preventDefault(); setSent(true); }}><h3>{t.formTitle}</h3>{t.fields.map((field, i) => i === 7 ? <label key={field}>{field}<textarea rows={4} /></label> : <label key={field}>{field}<input type="text" /></label>)}<button className="btn" type="submit">{t.submit}</button>{sent && <p className="form-note">{t.submitNote}</p>}</form>
+        <form className="quote-form" onSubmit={(e) => { e.preventDefault(); setSent(true); }}><h3>{t.formTitle}</h3>{t.fields.map((field, i) => i === 7 ? <label key={field}>{field}<textarea rows={4} /></label> : <label key={field}>{field}<input type="text" /></label>)}<p className="privacy-note">{lang === 'zh' ? '提交信息仅用于确认清洁服务报价、预约沟通和售后跟进。' : 'Submitted details are used only for quote confirmation, scheduling and service follow-up.'} <a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '查看隐私政策' : 'View Privacy Policy'}</a></p><button className="btn" type="submit">{t.submit}</button>{sent && <p className="form-note">{t.submitNote}</p>}</form>
       </section>
     </main>
 
-    <footer><div><strong>陈阿姨到家</strong><p>{lang === 'zh' ? '美国华人家庭信赖的家政清洁服务官网' : 'Home cleaning services for Chinese families in the U.S.'}</p></div><div><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{PHONE_LABEL}</a><a href={XHS_URL}>{t.xhs}</a></div></footer>
+    <footer><div><strong>陈阿姨到家</strong><p>{lang === 'zh' ? '美国华人家庭信赖的家政清洁服务官网' : 'Home cleaning services for Chinese families in the U.S.'}</p></div><div><a href={pagePath('about/')}>{lang === 'zh' ? '关于我们' : 'About'}</a><a href={pagePath('contact/')}>{lang === 'zh' ? '联系我们' : 'Contact'}</a><a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '隐私政策' : 'Privacy'}</a><a href={pagePath('terms/')}>{lang === 'zh' ? '服务条款' : 'Terms'}</a><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{PHONE_LABEL}</a><a href={XHS_URL}>{t.xhs}</a></div></footer>
     <div className="mobile-bar"><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{t.call}</a></div>
   </div>;
 }

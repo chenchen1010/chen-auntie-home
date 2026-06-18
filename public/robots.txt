@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chenchen1010.github.io/chen-auntie-home/sitemap.xml
