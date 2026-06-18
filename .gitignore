@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+.env
+.env.*
+source-assets/
+candidates.json
+contact-sheet.jpg
+public/assets/_backup_previous_selection/
+scripts/tunnel.mjs
