@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://auntiechen.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://auntiechen.com/about/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://auntiechen.com/guides/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://auntiechen.com/guides/los-angeles-move-out-cleaning-guide/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://auntiechen.com/guides/irvine-move-out-cleaning-case/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://auntiechen.com/contact/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://auntiechen.com/privacy-policy/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://auntiechen.com/terms/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>

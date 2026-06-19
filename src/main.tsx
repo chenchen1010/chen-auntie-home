@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { motion, useReducedMotion } from 'motion/react';
-import { Broom, CalendarCheck, ChatCircleText, CheckCircle, City, Clock, HouseLine, MapPin, Phone, ShieldCheck, Sparkle, Star, UsersThree, WechatLogo } from '@phosphor-icons/react';
+import { ArrowRight, Broom, CalendarCheck, ChatCircleText, CheckCircle, City, Clock, HouseLine, MapPin, Phone, ShieldCheck, Sparkle, Star, UsersThree, WechatLogo } from '@phosphor-icons/react';
 import './styles.css';
 
 const WECHAT_URL = 'https://work.weixin.qq.com/ca/cawcdec55f12d9b1c8';
@@ -11,7 +11,7 @@ const PHONE_LABEL = '949-279-8310';
 
 const copy = {
   zh: {
-    nav: ['为什么选择我们', '服务项目', '覆盖地区', '关于我们', '联系我们'],
+    nav: ['为什么选择我们', '服务项目', '覆盖地区', '清洁指南', '关于我们', '联系我们'],
     quote: '获取报价',
     call: '电话咨询',
     lang: '中文 / EN',
@@ -63,10 +63,13 @@ const copy = {
     serviceHelp: '不确定适合哪种清洁？告诉我们房型和重点区域，客服会帮您判断。',
     serviceHelpLink: '填写一次需求',
     cityAvailable: '可咨询',
-    xhs: '查看更多真实案例'
+    xhs: '查看更多真实案例',
+    guidesTitle: '清洁指南',
+    guidesBody: '整理搬家退租、深度清洁、开荒清洁和真实服务案例，帮助您在预约前把范围和重点想清楚。',
+    guideCta: '查看清洁指南'
   },
   en: {
-    nav: ['Why Us', 'Services', 'Cities', 'About', 'Contact'],
+    nav: ['Why Us', 'Services', 'Cities', 'Cleaning Guides', 'About', 'Contact'],
     quote: 'Get a Quote',
     call: 'Call Now',
     lang: 'EN / 中文',
@@ -118,11 +121,63 @@ const copy = {
     serviceHelp: 'Not sure which service fits? Share your home type and priority areas, and we will help you choose.',
     serviceHelpLink: 'Send one request',
     cityAvailable: 'Available',
-    xhs: 'View more real cases'
+    xhs: 'View more real cases',
+    guidesTitle: 'Cleaning Guides',
+    guidesBody: 'Practical guides and real service cases for move-out cleaning, deep cleaning and home cleaning planning.',
+    guideCta: 'View Cleaning Guides'
   }
 };
 
 const cityNames = ['Los Angeles / 洛杉矶', 'Boston / 波士顿', 'Chicago / 芝加哥', 'Philadelphia / 费城', 'New York / 纽约', 'Seattle / 西雅图', 'Bay Area / 湾区', 'San Jose / 圣何塞'];
+
+const guideCards = {
+  zh: [
+    {
+      type: '清洁知识',
+      title: '洛杉矶搬家退租清洁指南',
+      body: '从厨房、浴室、踢脚线到柜体内部，整理退租前最容易被忽略的清洁重点。',
+      image: 'guide-irvine-detail',
+      href: 'guides/los-angeles-move-out-cleaning-guide/'
+    },
+    {
+      type: '服务案例',
+      title: 'Irvine 独栋退租清洁案例',
+      body: '根据小红书真实服务记录整理，记录独栋搬出前厨房、浴室和楼梯等重点区域。',
+      image: 'guide-irvine-case',
+      href: 'guides/irvine-move-out-cleaning-case/'
+    },
+    {
+      type: '服务流程',
+      title: '7 年直营团队如何确认服务范围',
+      body: '从私信咨询、报价确认到现场验收，说明陈阿姨到家的服务沟通方式。',
+      image: 'guide-la-team',
+      href: 'guides/'
+    }
+  ],
+  en: [
+    {
+      type: 'Cleaning Tips',
+      title: 'Los Angeles Move-Out Cleaning Guide',
+      body: 'A practical checklist for kitchens, bathrooms, baseboards, cabinets and other commonly missed areas.',
+      image: 'guide-irvine-detail',
+      href: 'guides/los-angeles-move-out-cleaning-guide/'
+    },
+    {
+      type: 'Service Case',
+      title: 'Irvine Move-Out Cleaning Case',
+      body: 'A real service case adapted from Xiaohongshu materials, focused on move-out cleaning details.',
+      image: 'guide-irvine-case',
+      href: 'guides/irvine-move-out-cleaning-case/'
+    },
+    {
+      type: 'Process',
+      title: 'How Our Team Confirms the Cleaning Scope',
+      body: 'How quote details, service scope and on-site expectations are discussed before cleaning begins.',
+      image: 'guide-la-team',
+      href: 'guides/'
+    }
+  ]
+};
 const localImages: Record<string, string> = {
   'aunt-chen-clean-bright-kitchen': '/assets/hero-clean-home.webp',
   'cleaning-tools-blue-home-service': '/assets/tools-cleaning.webp',
@@ -134,7 +189,10 @@ const localImages: Record<string, string> = {
   'kitchen-counter': '/assets/kitchen-counter.webp',
   'sink-before-after': '/assets/sink-before-after.webp',
   'living-room': '/assets/living-room.webp',
-  'logo': '/assets/logo.webp'
+  'logo': '/assets/logo.webp',
+  'guide-irvine-case': '/assets/guides/xhs-irvine-move-out-hero.webp',
+  'guide-la-team': '/assets/guides/xhs-la-service-team.webp',
+  'guide-irvine-detail': '/assets/guides/xhs-irvine-cleaning-detail.webp'
 };
 const image = (seed: string) => `${import.meta.env.BASE_URL}${localImages[seed].replace(/^\//, '')}`;
 const pagePath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
@@ -150,7 +208,7 @@ function App() {
     <header className="nav">
       <a className="brand" href="#top" aria-label="陈阿姨到家 home"><img className="brand-logo" src={image('logo')} alt="陈阿姨到家 logo" /><span>陈阿姨到家</span></a>
       <nav className="nav-links" aria-label="Main navigation">
-        {['why', 'services', 'cities', 'about', 'contact'].map((id, i) => <a key={id} href={`#${id}`}>{t.nav[i]}</a>)}
+        {['why', 'services', 'cities', 'guides', 'about', 'contact'].map((id, i) => <a key={id} href={`#${id}`}>{t.nav[i]}</a>)}
       </nav>
       <div className="nav-actions"><button className="lang" onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}>{t.lang}</button><a className="btn btn-small" href={WECHAT_URL}>{t.quote}</a></div>
     </header>
@@ -165,7 +223,7 @@ function App() {
           <a className="phone-link" href={`tel:${PHONE}`}><Phone />{PHONE_LABEL}</a>
         </div>
         <div className="hero-media" aria-label="Professional cleaning service photo">
-          <img src={image('aunt-chen-clean-bright-kitchen')} alt="清洁后明亮整洁的家庭厨房与餐桌" />
+          <img src={image('aunt-chen-clean-bright-kitchen')} alt="Auntie Chen Home 品牌门店前台与蓝白品牌墙" />
           <div className="floating-card"><CheckCircle weight="fill" /><span>{lang === 'zh' ? '服务前确认范围与报价' : 'Scope and quote confirmed first'}</span></div>
         </div>
       </section>
@@ -201,6 +259,12 @@ function App() {
         <div className="case-action"><a className="btn btn-contrast" href={XHS_URL}>{t.xhs}</a></div>
       </motion.section>
 
+
+      <motion.section id="guides" className="guides-section section-pad compact" {...reveal}>
+        <div className="section-head centered"><h2>{t.guidesTitle}</h2><p>{t.guidesBody}</p></div>
+        <div className="guide-grid">{guideCards[lang].map((card) => <a className="guide-card" href={pagePath(card.href)} key={card.title}><img src={image(card.image)} alt={card.title} /><div><span>{card.type}</span><h3>{card.title}</h3><p>{card.body}</p><strong>{t.guideCta}<ArrowRight weight="bold" /></strong></div></a>)}</div>
+      </motion.section>
+
       <motion.section id="cities" className="cities section-pad" {...reveal}>
         <div className="city-intro"><City /><h2>{t.citiesTitle}</h2><p>{t.citiesBody}</p></div>
         <div className="city-grid">{cityNames.map((city) => <a href="#contact" className="city-card" key={city}><MapPin />{city}</a>)}</div>
@@ -222,7 +286,7 @@ function App() {
       </section>
     </main>
 
-    <footer><div><strong>陈阿姨到家</strong><p>{lang === 'zh' ? '由 AUNTIE CHEN HOME SERVICES inc 运营的美国华人家庭清洁服务' : 'Auntie Chen Home is operated by AUNTIE CHEN HOME SERVICES inc.'}</p></div><div><a href={pagePath('about/')}>{lang === 'zh' ? '关于我们' : 'About'}</a><a href={pagePath('contact/')}>{lang === 'zh' ? '联系我们' : 'Contact'}</a><a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '隐私政策' : 'Privacy'}</a><a href={pagePath('terms/')}>{lang === 'zh' ? '服务条款' : 'Terms'}</a><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{PHONE_LABEL}</a><a href={XHS_URL}>{t.xhs}</a></div></footer>
+    <footer><div><strong>陈阿姨到家</strong><p>{lang === 'zh' ? '由 AUNTIE CHEN HOME SERVICES inc 运营的美国华人家庭清洁服务' : 'Auntie Chen Home is operated by AUNTIE CHEN HOME SERVICES inc.'}</p></div><div><a href={pagePath('about/')}>{lang === 'zh' ? '关于我们' : 'About'}</a><a href={pagePath('contact/')}>{lang === 'zh' ? '联系我们' : 'Contact'}</a><a href={pagePath('guides/')}>{lang === 'zh' ? '清洁指南' : 'Cleaning Guides'}</a><a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '隐私政策' : 'Privacy'}</a><a href={pagePath('terms/')}>{lang === 'zh' ? '服务条款' : 'Terms'}</a><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{PHONE_LABEL}</a><a href={XHS_URL}>{t.xhs}</a></div></footer>
     <div className="mobile-bar"><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{t.call}</a></div>
   </div>;
 }
