@@ -142,14 +142,14 @@ const guideCards = {
     {
       type: '服务案例',
       title: 'Irvine 独栋退租清洁案例',
-      body: '根据小红书真实服务记录整理，记录独栋搬出前厨房、浴室和楼梯等重点区域。',
+      body: '记录独栋搬出前厨房、浴室、楼梯和柜体等重点区域。',
       image: 'guide-irvine-case',
       href: 'guides/irvine-move-out-cleaning-case/'
     },
     {
       type: '服务流程',
       title: '7 年直营团队如何确认服务范围',
-      body: '从私信咨询、报价确认到现场验收，说明陈阿姨到家的服务沟通方式。',
+      body: '从需求沟通、报价确认到现场验收，说明陈阿姨到家的服务沟通方式。',
       image: 'guide-la-team',
       href: 'guides/'
     }
@@ -165,7 +165,7 @@ const guideCards = {
     {
       type: 'Service Case',
       title: 'Irvine Move-Out Cleaning Case',
-      body: 'A real service case adapted from Xiaohongshu materials, focused on move-out cleaning details.',
+      body: 'A real service case focused on move-out cleaning details for a detached home.',
       image: 'guide-irvine-case',
       href: 'guides/irvine-move-out-cleaning-case/'
     },
