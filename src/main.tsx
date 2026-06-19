@@ -82,7 +82,7 @@ const copy = {
       ['Respect for Your Home', 'We respect privacy and handle valuables and personal items with care.']
     ],
     whyTitle: 'A cleaning team with process, not one-off handoffs',
-    whyBody: 'Aunt Chen at Home serves Chinese families, students, renters, landlords and small commercial spaces with clear communication and follow-up.',
+    whyBody: 'Auntie Chen Home serves Chinese families, students, renters, landlords and small commercial spaces with clear communication and follow-up.',
     proof: ['Screened and trained cleaners', 'Customer service confirms needs and quotes', 'Tools prepared for each cleaning scenario', 'Feedback and after-service support'],
     servicesTitle: 'Cleaning Services',
     servicesBody: 'Quotes vary by city, home type, size and service needs. Send your details and we will confirm scope and timing.',
@@ -158,7 +158,7 @@ function App() {
     <main id="top">
       <section className="hero section-pad">
         <div className="hero-copy">
-          <p className="eyebrow">AUNT CHEN HOME CLEANING</p>
+          <p className="eyebrow">AUNTIE CHEN HOME SERVICES</p>
           <h1>{t.heroTitle}</h1>
           <p className="hero-body">{t.heroBody}</p>
           <div className="cta-row"><a className="btn" href={WECHAT_URL}><WechatLogo weight="fill" />{t.quote}</a><a className="btn btn-ghost" href="#why">{t.heroSecondary}</a></div>
@@ -222,7 +222,7 @@ function App() {
       </section>
     </main>
 
-    <footer><div><strong>陈阿姨到家</strong><p>{lang === 'zh' ? '美国华人家庭信赖的家政清洁服务官网' : 'Home cleaning services for Chinese families in the U.S.'}</p></div><div><a href={pagePath('about/')}>{lang === 'zh' ? '关于我们' : 'About'}</a><a href={pagePath('contact/')}>{lang === 'zh' ? '联系我们' : 'Contact'}</a><a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '隐私政策' : 'Privacy'}</a><a href={pagePath('terms/')}>{lang === 'zh' ? '服务条款' : 'Terms'}</a><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{PHONE_LABEL}</a><a href={XHS_URL}>{t.xhs}</a></div></footer>
+    <footer><div><strong>陈阿姨到家</strong><p>{lang === 'zh' ? '由 AUNTIE CHEN HOME SERVICES inc 运营的美国华人家庭清洁服务' : 'Auntie Chen Home is operated by AUNTIE CHEN HOME SERVICES inc.'}</p></div><div><a href={pagePath('about/')}>{lang === 'zh' ? '关于我们' : 'About'}</a><a href={pagePath('contact/')}>{lang === 'zh' ? '联系我们' : 'Contact'}</a><a href={pagePath('privacy-policy/')}>{lang === 'zh' ? '隐私政策' : 'Privacy'}</a><a href={pagePath('terms/')}>{lang === 'zh' ? '服务条款' : 'Terms'}</a><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{PHONE_LABEL}</a><a href={XHS_URL}>{t.xhs}</a></div></footer>
     <div className="mobile-bar"><a href={WECHAT_URL}>{t.quote}</a><a href={`tel:${PHONE}`}>{t.call}</a></div>
   </div>;
 }
